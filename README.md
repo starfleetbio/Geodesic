@@ -11,67 +11,67 @@ Geodesic domes turn a sphere into a lattice of triangles — the geometry behind
 (Background: [Geodesic polyhedron — Wikipedia](https://en.wikipedia.org/wiki/Geodesic_polyhedron).)
 
 <p align="center">
-  <img src="images/2%29%20Biosphere.png" width="47%" alt="Montreal Biosphère">
-  <img src="images/3%29%20Spaceship_Earth%2C_EPCOT.jpg" width="47%" alt="Spaceship Earth, EPCOT">
+  <img src="2%29%20Biosphere.png" width="47%" alt="Montreal Biosphère">
+  <img src="3%29%20Spaceship_Earth%2C_EPCOT.jpg" width="47%" alt="Spaceship Earth, EPCOT">
 </p>
 
 Start with an icosahedron and subdivide each of its 20 triangular faces into a finer grid — here **4V**
 (four divisions per edge), giving 16 small triangles per face in just five distinct shapes.
 
 <p align="center">
-  <img src="images/4%29%204v_triangle.png" width="50%" alt="One face subdivided 4V into 16 triangles, shapes T1–T5">
+  <img src="4%29%204v_triangle.png" width="50%" alt="One face subdivided 4V into 16 triangles, shapes T1–T5">
 </p>
 
 Do that to all 20 faces and the whole sphere unfolds into this net:
 
 <p align="center">
-  <img src="images/5%29%20net20_labeled.png" width="100%" alt="Full icosahedron flat net — all 20 faces">
+  <img src="5%29%20net20_labeled.png" width="100%" alt="Full icosahedron flat net — all 20 faces">
 </p>
 
 A full sphere isn't a dome, though — you cut it. Different fractions give different domes:
 
 <p align="center">
-  <img src="images/6%29%20truncations.png" width="68%" alt="Truncation options for the sphere">
+  <img src="6%29%20truncations.png" width="68%" alt="Truncation options for the sphere">
 </p>
 
 This model takes the **5/8** cut — everything above a plane just below the equator. That leaves **200
 panels**: the actual dome, unfolded and colored by shape:
 
 <p align="center">
-  <img src="images/7%29%20net58_labeled.png" width="100%" alt="5/8-truncation flat net — 200 panels">
+  <img src="7%29%20net58_labeled.png" width="100%" alt="5/8-truncation flat net — 200 panels">
 </p>
 
 Those 200 panels reduce to just **six printable parts** (T3 is chiral, so left and right):
 
 <p align="center">
-  <img src="images/8%29%20panels.png" width="85%" alt="The six panel shapes, inner face up with labels">
+  <img src="8%29%20panels.png" width="85%" alt="The six panel shapes, inner face up with labels">
 </p>
 
 Give each shape its own grey — light at the vertices, dark at the centers — and the finished dome reads its
 own structure, floating on a black base ring:
 
 <p align="center">
-  <img src="images/9%29%20shade_rim.png" width="100%" alt="Dome rendered in the production color ramp">
+  <img src="9%29%20shade_rim.png" width="100%" alt="Dome rendered in the production color ramp">
 </p>
 
 That base is **ten curved arcs** that mitre together into the rim:
 
 <p align="center">
-  <img src="images/10%29%20arcs_review.png" width="85%" alt="The two rim arc shapes in black">
+  <img src="10%29%20arcs_review.png" width="85%" alt="The two rim arc shapes in black">
 </p>
 
 Everything holds together with **magnets, not glue**. Each edge is *keyed* — its magnet pair sits at a
 spacing unique to that chord — so only the correct panels can mate:
 
 <p align="center">
-  <img src="images/11%29%20keying_reference_1.png" width="70%" alt="Magnet keying reference">
+  <img src="11%29%20keying_reference_1.png" width="70%" alt="Magnet keying reference">
 </p>
 
 And every magnet lives in the same little channel: a spherical seat that holds the ball flush at the surface,
 a short throat that captures it, and a slide to load it from behind with a tamper:
 
 <p align="center">
-  <img src="images/12%29%20final_channel.png" width="70%" alt="Magnet channel cross-section">
+  <img src="12%29%20final_channel.png" width="70%" alt="Magnet channel cross-section">
 </p>
 
 ---
@@ -301,8 +301,8 @@ stock). To collapse back to **five** spools instead, share the arcs onto **Dark 
 
 Standard:
 
-- **Outer-face-down**, brim ON (~5 mm), **supports OFF**, elephant's-foot compensation ~0.15 mm.
-- Do **not** auto-orient / "place on face" — parts are already flat and correctly oriented; just Auto-arrange.
+- **Outer-face-down**, **supports OFF**, elephant's-foot compensation ~0.15 mm.
+- Do **not** auto-orient / "place on face" — parts are pre-flattened show-face-down and just Auto-arrange.
 - Full face (16 panels + 2 arcs) ≈ 3 plates.
 
 For rounder holes and a crisper neck (the channels print as horizontal holes, whose tops tend to sag):
@@ -314,6 +314,26 @@ For rounder holes and a crisper neck (the channels print as horizontal holes, wh
 - If slicing in **OrcaSlicer**, enable **X-Y hole compensation** to counter the typical hole under-sizing
   (Bambu Studio lacks a direct equivalent — lean on flow calibration there).
 - The Ø1.4 window will likely print slightly under — that only *improves* retention, so it's fine.
+
+**Bambu Studio process settings** (the exact toggles, plus what the first prints taught us):
+
+- **Brim type: Auto** — *not* a forced "Outer brim." These are wide flat parts with a thick perimeter, so
+  Auto adds none (huge bed-contact patch, no brim needed). A forced brim only mars the show-face edge and is
+  annoying to peel. If a sharp triangle *tip* ever lifts, use **Mouse ears** (tiny corner discs), not a full brim.
+- **Ironing → type: "Top surfaces."** Smooths the hidden inner face (the streaky top-skin we saw); optional, adds time.
+- **Top surface pattern: Monotonic**, **Top shell layers: 4–5** — a fully-closed, uniform top skin.
+- **Layer height 0.16 mm** for panels (**0.12 mm** for the coupon) — rounds the horizontal magnet holes.
+- **Outer-wall / small-perimeter speed ~50–100 mm/s** — clean channel walls and crisp windows.
+- **Calibrate flow rate + pressure advance first** — over-extrusion is what closes the small holes / tightens the neck.
+- **Bed adhesion (anti-warp):** wash the plate with dish soap + warm water regularly, never touch the print area
+  with bare fingers, and keep the **large flat panels toward the plate center** (the cooler edges are where big
+  flats lift). Keep the door/lid closed. *(A T4 warped-and-rippled on plate 2 — it was a first-layer adhesion
+  failure at a plate edge, not a lack of brim.)*
+- **Orientation is baked in:** every part is pre-flattened **show-face-down** via the deterministic
+  "largest-coplanar-facet → bed" method, **verified 0.000° tilt**. Do not re-orient — a residual tilt of only
+  ~0.2° prints the first layer in visible steps (the T4/T5 files had this before the fix). Just Auto-arrange.
+- **Save ONE process preset and slice every plate from it.** Plate-to-plate drift in settings is what let T4/T5
+  come out tilted while the rest were flat; a single locked preset keeps all 200 panels identical.
 
 Color scheme: see **Colors (production)** above — a 5-step Bambu grey ramp by shape (Jade White T1 → Dark
 Gray T5, T3-L/R share Silver) plus **Black** for the base arcs. Six PLA Basic spools, ~2.5 kg total. Print
