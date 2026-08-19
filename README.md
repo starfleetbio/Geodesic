@@ -11,67 +11,67 @@ Geodesic domes turn a sphere into a lattice of triangles — the geometry behind
 (Background: [Geodesic polyhedron — Wikipedia](https://en.wikipedia.org/wiki/Geodesic_polyhedron).)
 
 <p align="center">
-  <img src="2%29%20Biosphere.png" width="47%" alt="Montreal Biosphère">
-  <img src="3%29%20Spaceship_Earth%2C_EPCOT.jpg" width="47%" alt="Spaceship Earth, EPCOT">
+  <img src="images/2%29%20Biosphere.png" width="47%" alt="Montreal Biosphère">
+  <img src="images/3%29%20Spaceship_Earth%2C_EPCOT.jpg" width="47%" alt="Spaceship Earth, EPCOT">
 </p>
 
 Start with an icosahedron and subdivide each of its 20 triangular faces into a finer grid — here **4V**
 (four divisions per edge), giving 16 small triangles per face in just five distinct shapes.
 
 <p align="center">
-  <img src="4%29%204v_triangle.png" width="50%" alt="One face subdivided 4V into 16 triangles, shapes T1–T5">
+  <img src="images/4%29%204v_triangle.png" width="50%" alt="One face subdivided 4V into 16 triangles, shapes T1–T5">
 </p>
 
 Do that to all 20 faces and the whole sphere unfolds into this net:
 
 <p align="center">
-  <img src="5%29%20net20_labeled.png" width="100%" alt="Full icosahedron flat net — all 20 faces">
+  <img src="images/5%29%20net20_labeled.png" width="100%" alt="Full icosahedron flat net — all 20 faces">
 </p>
 
 A full sphere isn't a dome, though — you cut it. Different fractions give different domes:
 
 <p align="center">
-  <img src="6%29%20truncations.png" width="68%" alt="Truncation options for the sphere">
+  <img src="images/6%29%20truncations.png" width="68%" alt="Truncation options for the sphere">
 </p>
 
 This model takes the **5/8** cut — everything above a plane just below the equator. That leaves **200
 panels**: the actual dome, unfolded and colored by shape:
 
 <p align="center">
-  <img src="7%29%20net58_labeled.png" width="100%" alt="5/8-truncation flat net — 200 panels">
+  <img src="images/7%29%20net58_labeled.png" width="100%" alt="5/8-truncation flat net — 200 panels">
 </p>
 
 Those 200 panels reduce to just **six printable parts** (T3 is chiral, so left and right):
 
 <p align="center">
-  <img src="8%29%20panels.png" width="85%" alt="The six panel shapes, inner face up with labels">
+  <img src="images/8%29%20panels.png" width="85%" alt="The six panel shapes, inner face up with labels">
 </p>
 
 Give each shape its own grey — light at the vertices, dark at the centers — and the finished dome reads its
 own structure, floating on a black base ring:
 
 <p align="center">
-  <img src="9%29%20shade_rim.png" width="100%" alt="Dome rendered in the production color ramp">
+  <img src="images/9%29%20shade_rim.png" width="100%" alt="Dome rendered in the production color ramp">
 </p>
 
 That base is **ten curved arcs** that mitre together into the rim:
 
 <p align="center">
-  <img src="10%29%20arcs_review.png" width="85%" alt="The two rim arc shapes in black">
+  <img src="images/10%29%20arcs_review.png" width="85%" alt="The two rim arc shapes in black">
 </p>
 
 Everything holds together with **magnets, not glue**. Each edge is *keyed* — its magnet pair sits at a
 spacing unique to that chord — so only the correct panels can mate:
 
 <p align="center">
-  <img src="11%29%20keying_reference_1.png" width="70%" alt="Magnet keying reference">
+  <img src="images/11%29%20keying_reference_1.png" width="70%" alt="Magnet keying reference">
 </p>
 
 And every magnet lives in the same little channel: a spherical seat that holds the ball flush at the surface,
 a short throat that captures it, and a slide to load it from behind with a tamper:
 
 <p align="center">
-  <img src="12%29%20final_channel.png" width="70%" alt="Magnet channel cross-section">
+  <img src="images/12%29%20final_channel.png" width="70%" alt="Magnet channel cross-section">
 </p>
 
 ---
