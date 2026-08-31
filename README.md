@@ -15,6 +15,11 @@ Geodesic domes turn a sphere into a lattice of triangles — the geometry behind
   <img src="images/3%29%20Spaceship_Earth%2C_EPCOT.jpg" width="47%" alt="Spaceship Earth, EPCOT">
 </p>
 
+<p align="center">
+  <img src="images/2b%29%20Biosphere_side.jpg" width="40%" alt="Side view of the Montreal Biosphère geodesic frame">
+  <br><em>A side view of the Montreal Biosphère — the geodesic frame up close.</em>
+</p>
+
 Start with an icosahedron and subdivide each of its 20 triangular faces into a finer grid — here **4V**
 (four divisions per edge), giving 16 small triangles per face in just five distinct shapes.
 
@@ -128,19 +133,34 @@ cleanly with no supports. The outer show face is untouched.
 
 ---
 
-## Rim — 10 arcs, 2 printable shapes
+## Rim — 20 arcs, 4 printable shapes  *(redesigned: arcs are now built as panels)*
 
-The 5/8 base is too wide to split in fifths (347 mm > 256 mm bed), so it's **10 arcs** (≈186 mm each):
+The base ring was reworked so the arcs are **constructed and printed exactly like the triangular panels** —
+flat, show-face-down, with the identical channel A loaded from the inner face. This replaced the old two-edge
+arcs that printed standing up and whose magnets could not be inserted at all. Each old arc is split at its
+middle vertex into two single-chord pieces, giving **20 arcs in 4 unique shapes, 5 each**:
 
-- **5 × "T2·T3 arc"** — top seats on chords **C + B**
-- **5 × "T5·T3 arc"** — top seats on chords **F + B**
+- **C** — top chord C (seats a **T2**); two *tall* seams (symmetric)
+- **F** — top chord F (seats a **T5**); two *short* seams (symmetric)
+- **BL / BR** — top chord B (seats a **T3-L / T3-R**); one tall + one short seam (mirror pair)
 
-Each arc is a wall standing on a flat foot, with **mitred joint faces** so neighbors close flush. The wall is
-**7 mm thick** (thicker than the 5.2 mm panel rim): the panel-to-arc joint angle made a 5.2 mm wall too slim
-behind the seat sockets, so they broke through the inner face — the extra material is added on the inner side,
-seats stay at the outer bevel so panel mating is unchanged. Every arc has one **3-magnet (tall)** end and one
-**2-magnet (short)** end; tall meets tall, short meets short. (Arc seats load vertically and print as clean
-holes, so they keep a stepped Ø3.1 throat rather than the taper.)
+Around the ring the chords run **B F B C** (×5). The seam heights — **tall ≈28 mm** at the C/B vertices,
+**short ≈21 mm** at the F/B vertices — key the BL/BR mirror pair automatically: a tall seam only closes
+against a tall seam, so a piece can't seat in its mirror's slot.
+
+Construction (same helper as `build_panel`): a **radial frustum** (outer on the sphere at R, inner at
+R−t_rim) so every edge is **beveled for free** at the panel dihedral; a **t_web pocket** on the inner face;
+**channel A** cut on the top chord (to the panel above) and on both seams (to the neighbor arcs), **all loaded
+from the inner face**. Wall thickness is the panel's **t_rim = 5.2 mm** (radial), pocket depth t_rim−t_web =
+**3.0 mm** — byte-identical to a panel, so channel A sits at the same depth (Ø3.6 slide at 2.6 mm, 0.80 mm
+wall over each magnet). The floor was dropped to **z = −105** so the short seams fit two magnets. Seam
+magnets: **2 per seam** — the −105 floor makes even the short seams (~21 mm) tall enough for two (lower magnet
+7 mm above the floor on every seam; tall pair 15.4 mm apart, short pair 7.7 mm apart).
+
+Verified against the existing panels, all deltas **0.000 mm**: arc top-edge magnet windows coincide with the
+owning panel's (C→T2, F→T5, BL/BR→T3-L/R); adjacent-arc seam windows coincide; and the arc∩panel and arc∩arc
+*solids* abut with **zero interpenetration** (seam miters use the tangential bisector plane; a full-panel-plane
+top cut was rejected — it sliced the wall into a wedge). Chord letters are debossed at the panel size (4.5/0.8).
 
 ---
 
@@ -154,36 +174,45 @@ holes, so they keep a stepped Ø3.1 throat rather than the taper.)
 ### The one channel (identical for every magnet)
 
 ```
-Ø1.4 window ← spherical seat → Ø3.45 cylinder → short chamfered throat Ø3.1 → slide Ø3.60 (to perimeter + 3.6 mm)
+Ø1.4 window ← shallow spherical lead → OPEN barrel Ø3.6 → short chamfered throat Ø3.2 → slide Ø3.60 (to perimeter + 3.6 mm)
 ```
 
 The channel axis is straight (one revolve, so no boolean-junction faces). One axis works because the kiss
 direction (out the bevel) and the load direction (in from the pocket) are only ~5° apart on this
-shallow-dihedral dome.
+shallow-dihedral dome. **This is channel "A", locked by the coupon-2 magnet test** (see below); it replaced
+a full Ø3.45 spherical cup that seated the ball beautifully but gripped it so hard it would not rotate.
 
-- **Spherical seat + Ø1.4 window** — the front of the socket is a **sphere** (Ø3.45) sunk 1.577 mm behind the
-  bevel, which the bevel truncates to the Ø1.4 window. Only a sphere seats the ball **concentric and flush**
-  (front 0.01 mm proud) so neighbor magnets actually touch. *(A cone was tried and rejected: it seats the ball
-  ~0.26 mm recessed → a ~0.5 mm gap between magnets.)*
-- **Cylinder socket Ø3.45** — behind the sphere seat, a short cylinder gives the ball room to spin (set
-  polarity) and is forgiving of exactly where it settles.
-- **Short chamfered throat Ø3.1** — a brief V (chamfer down to Ø3.1, chamfer back up to the slide). The
-  chamfers print open (no ledge — the old *stepped* Ø3.10 neck bridged shut on the first print), and because
-  the pinch is short (**~0.1 mm of interference, vs the old 0.8 mm neck**) the ball pushes through easily with
-  a tamper. Ø3.1 is a hair under the 3.175 ball → **light mechanical capture in ANY orientation** (panels
-  horizontal, arc seats vertical), so gravity can't drop a rim magnet. **Final throat TBD by magnet fit test.**
+- **Ø1.4 window (flush datum)** — the bevel truncates the seat to a Ø1.4 hole (1.4 < 3.175, so the ball can't
+  escape the front). The ball floats forward to the window and, at assembly, the two mating **bevels close
+  face-to-face** — *that* is what sets the flush kiss (front ~0.01 mm proud, so neighbor magnets touch). Because
+  the kiss is set at the window/bevel, everything behind the window can be opened up for rotation **without
+  changing how panels mate** — new parts kiss at the identical point as every part already printed.
+- **Shallow spherical lead** — a short concentric spherical arc just behind the window cradles the ball
+  forward (this is what gives retention its margin), *without* wrapping its whole front hemisphere the way the
+  old full cup did. In the coupon test the two shallow-seat cases (A, B) both spun **and** retained; the cone
+  seat (D) lost the ball out the throat because it had no forward cradle. So: shallow lead, not cone.
+- **Open barrel Ø3.6** — behind the lead the ball's equator runs in a cylinder **0.21 mm wider per side** than
+  the ball, so it **spins freely to self-align polarity**. This was the whole fix: opening the barrel (not
+  touching the throat) is what freed rotation. Ø3.6 was chosen over Ø3.7/3.8 for the tighter retention margin
+  and the thicker wall over the magnet (**0.80 mm** vs 0.70 mm at Ø3.8).
+- **Throat = the retention knob (barrel/seat = A; throat is separate).** Coupon-2's letters A–F only varied
+  barrel/seat at a *fixed* Ø3.2 throat, so "A" means **barrel Ø3.6 + shallow seat** and says nothing about the
+  throat. Ø3.2 is only 0.025 mm under the 3.175 ball, so it captures **only** via the printer's ~0.1 mm shrink —
+  which held on panels but **let the ball fall out of the arcs**. So the throat is being **tightened to
+  Ø3.0–3.1** (nominally under the ball → captures by geometry, not luck) and confirmed on the arc test print;
+  barrel/seat stay at A. Throat affects rotation not at all — purely capture.
 - **Slide Ø3.60** — runs from the throat to the **perimeter** then **3.6 mm into the pocket** — just enough
   to drop the ball in and start a tamper rod straight.
 
-*(Arc seat/splice magnets still use the older sphere-socket retention — they print vertically as clean holes,
-so it's fine there; panel and arc sockets can be unified later once the fit is proven.)*
+*(Arc seat/splice magnets share the same window/kiss datum; the panel channel A geometry now applies to them
+too, so panel and arc sockets are unified.)*
 
 ### How magnets are loaded (post-print, printer OFF)
 
 Drop the ball into the slide from the pocket side, then push it with a small blunt rod (a **tamper**,
 ~2.5–3 mm) through the neck until it snaps into the socket flush at the window. The slide is the tamper's
-guide. Panel edges load **perpendicular to the edge** from the pocket; arc seats load **up from the floor**;
-arc splices load from the **inner face**.
+guide. **Both panels and arcs load the same way — from the inner-face pocket, perpendicular to the edge** (the
+arc redesign unified this; there is no separate "load up from the floor" case anymore).
 
 ### Keys (so wrong edges never mate)
 
@@ -200,17 +229,24 @@ Splice keys: **3 magnets** stacked up the tall (T2·T3↔T5·T3) joints, **2** u
 
 ---
 
-## The coupon — dial in the neck before committing
+## The coupons — how channel "A" was dialed in *(resolved)*
 
-The neck (Ø3.10) grips a Ø3.175 ball with only **0.075 mm of interference — smaller than a 0.4 mm
-nozzle's dimensional repeatability (±0.1–0.15 mm).** So the *exact* neck that captures-and-holds while
-still letting the ball spin can't be predicted; it must be measured on your machine.
+The fit that captures-and-holds while still letting the ball **spin** can't be predicted (the interference is
+smaller than a 0.4 mm nozzle's ±0.1–0.15 mm repeatability), so it was measured on the machine with two
+throwaway **coupons** — small test blocks, each a real T1 panel with the live channel repeated 6×,
+printed show-face-down like a real panel.
 
-A **coupon** is a small throwaway test print — not a whole panel. The useful one here is a **neck sweep**:
-one small block with the real socket-neck-slide-window channel repeated ~5 times at
-**neck = 2.9 / 3.0 / 3.1 / 3.2 / 3.3 mm**, printed in the same **horizontal channel orientation** as a
-panel (outer-face-down). Drop a magnet in each; whichever neck snaps the ball past and holds it while it
-still spins is your number. Then rebuild every panel/arc with that neck.
+- **Coupon 1 — throat sweep** (2.9 / 3.0 / 3.1 / 3.2 / 3.3 mm). Result: every throat captured and held, but
+  **none let the ball rotate** — proving the throat was *not* what jammed rotation. The culprit was the full
+  spherical cup gripping the ball's whole front hemisphere.
+- **Coupon 2 — seat/barrel sweep** (throat fixed 3.2, window fixed 1.4; barrel Ø3.6/3.7/3.8 × shallow-seat vs
+  cone vs the old full cup). Result: **A (barrel 3.6, shallow seat) and B (3.7, shallow) both spun and
+  retained**; the cone (D) spun but **lost retention**; the old full cup (F) was too tight to rotate. **A won**
+  — it rotates, has the best retention margin, and the thickest wall over the magnet. (Ø3.8 cases were void:
+  the wide barrel reached the rim and the label deboss cut into the bore.)
+
+**Outcome:** channel A is now the library default for every panel and arc. Nothing further to dial in unless a
+future spool/nozzle prints retention marginal, in which case tighten the throat toward Ø3.1.
 
 Shortcut if you don't want a separate coupon: **print your face test plate at neck 3.10 and use it as both
 the coupon and your first real face.** If 3.10 is too tight or too loose once magnets arrive, it's a
@@ -297,6 +333,52 @@ stock). To collapse back to **five** spools instead, share the arcs onto **Dark 
 
 ---
 
+## Production sequence (print & build)
+
+**Build as face modules — this is what fits single-color printing.** The dome is ~**12½ identical face
+triangles** plus the base ring. Every face is the same recipe, and every panel of a given color is
+interchangeable, so printing (which yields piles of one color at a time) maps straight onto it: sequence
+plates for printer efficiency, and assemble faces continuously from bins.
+
+**One face module (16 panels):**
+
+| Color | Panels per face |
+|---|---|
+| White (T1) | 3 |
+| Light Gray (T2) | 3 |
+| Silver (T3-L + T3-R) | 6 |
+| Gray (T4) | 3 |
+| Dark Gray (T5) | 1 |
+
+*(Black arcs aren't part of a face — they're the separate base ring.)*
+
+**Flow:**
+
+1. **Base first.** Print the 10 Black arcs (~5 h) and assemble the mitred base ring — the foundation faces dock onto.
+2. **Silver is the pacing color** — 6 of every 16 panels, 80 total. Keep Silver printing more or less
+   continuously in the background; face completion is gated by how fast Silver arrives.
+3. Print the four accent colors (White, Light Gray, Gray, Dark Gray) in **full single-color plates** around
+   the Silver, changing filament only at plate boundaries (finish a color before switching to keep swaps low
+   — ~19 color loads total across the run).
+4. **Assemble a face** whenever the bins hold a full set (3 White · 3 Light Gray · 6 Silver · 3 Gray ·
+   1 Dark Gray): drop and tamper its two magnets per edge, key-checked, then set the finished triangle aside.
+5. **Dock faces bottom-up** onto the base ring, closing each horizontal course as a self-supporting
+   compression hoop, up to the top cap.
+
+This decouples printing from assembly: a failed panel is a non-event (pull the next same-color part from the
+bin), and the printer never waits on the assembler or vice-versa.
+
+*Alternative — progressive rings ("arcs up").* To watch a freestanding dome rise instead of building
+modules, print bottom-up by course: the surface is **17 courses**, grouped into a base ring + ~6
+color-interleaved phases (widest belt → equator → … → top cap), assembling each ring as its colors finish.
+Same final result; it just couples print order to assembly order (more, smaller color batches) in exchange
+for a taller dome after every phase.
+
+**Scale:** ~**200 panels + 10 arcs**, ~**78 h** of printing across ~**28 plates** (≈90 h with reprints),
+six PLA Basic spools (~2.5 kg). Silver and Gray are the long poles; the top third goes quickly.
+
+---
+
 ## Print settings (Bambu P1S, 256 mm bed, 0.4 mm nozzle, one color at a time)
 
 Standard:
@@ -357,6 +439,24 @@ The first full-face print worked, and revealed four things — all now fixed in 
    (that's how those end magnets load) and stay.
 4. **Chord letters a little hard to read.** → **bigger (4.5 mm) and deeper (0.8 mm)**.
 
-Still open, to finalize with real magnets: the exact **throat diameter** (3.1 is the safe capture default;
-loosen toward 3.2 only if it's too tight to seat), and confirming the window/throat print cleanly enough that
-magnets seat and hold without hand-clearing.
+5. **Magnets seated but wouldn't rotate** (found with real magnets, coupon 2). The full Ø3.45 spherical cup
+   cradled the ball's whole front hemisphere — great seating, but too much conforming contact to let it spin
+   and self-align polarity. → **Channel A**: shallow spherical lead + **open barrel Ø3.6** + throat Ø3.2
+   (see *The one channel* and *The coupons* above). Balls now rotate freely and still retain; kiss point
+   unchanged, so it mates with every part already printed.
+
+6. **Arcs were wrong in every way and got rebuilt as panels** (the big work since the last commit). The old
+   arcs printed standing up; magnets would not insert, edges weren't beveled, and the channels didn't retain.
+   → The rim is now **20 flat panel-family arcs in 4 shapes (C, F, BL, BR)** built from the same radial-frustum
+   helper as the panels — beveled edges for free, channel A loaded from the inner face, wall = panel t_rim
+   (5.2 mm), floor dropped to −105 for two magnets on the short seams. See **Rim** above. Interfaces to the
+   existing panels and to neighbor arcs verified exact (0.000 mm). *Test print in progress: one BL/F/BR/C set
+   against the existing T2/T5/T3-L/T3-R panels to confirm seating, arc-to-arc seams, retention, and height.*
+
+### Open items
+- **Throat for retention:** tightening from Ø3.2 to **Ø3.0–3.1** (Ø3.2 relied on print shrink and let go in
+  the arcs); confirm on the arc test print, then lock one throat across panels **and** arcs.
+- **Arc-to-panel top seam:** the arc top now abuts the panel with zero interpenetration and exact magnets; a
+  small top-edge chamfer to close the shallow V-gap at that seam is optional and still to add.
+- After the arc test passes: regenerate the full production kit (200 panels + 20 arcs) with the locked
+  throat, and update the magnet count (the 20-arc rim changes the old 40-seat / 50-splice tally).
