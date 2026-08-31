@@ -59,10 +59,10 @@ own structure, floating on a black base ring:
   <img src="images/9%29%20shade_rim.png" width="100%" alt="Dome rendered in the production color ramp">
 </p>
 
-That base is **ten curved arcs** that mitre together into the rim:
+That base is **20 pieces in 4 shapes** (BL, BR, C, F) that mitre together into the rim — read them as several arcs or as one continuous ring, depending on how you group them:
 
 <p align="center">
-  <img src="images/10%29%20arcs_review.png" width="85%" alt="The two rim arc shapes in black">
+  <img src="images/10%29%20arcs_review.png" width="85%" alt="The four rim arc shapes in black">
 </p>
 
 Everything holds together with **magnets, not glue**. Each edge is *keyed* — its magnet pair sits at a
@@ -292,7 +292,7 @@ dark end.
 keying (distinct per chord) enforces the chirality at assembly, so color doesn't have to. That keeps the
 ramp to **five** filaments, not six.
 
-**Arcs — Black (a sixth, "ground" color).** The 10 base rim arcs print in **Black** — a step below even the
+**Arcs — Black (a sixth, "ground" color).** The 20 base rim arc pieces print in **Black** — a step below even the
 T5 charcoal — so the base is its own element, not borrowed panel-grey. The five greys *code the five panel
 shapes*; black reads as "not a panel, the ground the dome sits on." It gives a crisp value break wherever the
 base meets the dome (even the darkest T5 panels stay distinct from the rim), recedes to pure shadow so the
@@ -306,13 +306,13 @@ The hex are **targets**, not exact filament colors — printed PLA won't land on
 column as the nearest match and confirm on a swatch. (Prototyping is being done in the P1S sample **green** —
 just a working color, not part of the scheme.)
 
-### Filament quantities (full dome — 200 panels + 10 arcs)
+### Filament quantities (full dome — 200 panels + 20 arc pieces)
 
 Printed masses are calibrated from a real slice (the 117.06 g face plate → **0.906 g/cm³** effective, which
 already includes walls + infill), so these are build numbers, not solid-volume guesses.
 
-Per part, printed: **T1 ≈ 8.0 g · T2 ≈ 9.6 g · T3-L/R ≈ 10.0 g · T4 ≈ 10.9 g · T5 ≈ 11.3 g**; arcs ≈ **23 g**
-(T2·T3) and **20 g** (T5·T3).
+Per part, printed: **T1 ≈ 8.0 g · T2 ≈ 9.6 g · T3-L/R ≈ 10.0 g · T4 ≈ 10.9 g · T5 ≈ 11.3 g**; arc pieces
+≈ **10–12 g** each (each old T2·T3 / T5·T3 arc is now split at its middle vertex into two halves).
 
 Per color for the whole dome — net, and with a **+15 %** allowance for brim, purge, and the odd failed part:
 
@@ -323,10 +323,10 @@ Per color for the whole dome — net, and with a **+15 %** allowance for brim, p
 | **Silver** | T3-L ×40 + T3-R ×40 | 800 g | 920 g | 1 |
 | **Gray** (T4) | T4 ×40 | 436 g | 501 g | 1 |
 | **Dark Gray** | T5 ×15 | 169 g | 195 g | 1 |
-| **Black** | arcs ×10 | 215 g | 247 g | 1 |
-| **Total** | 200 panels + 10 arcs | **2196 g** | **2525 g** | **6** |
+| **Black** | arc pieces ×20 | 215 g | 247 g | 1 |
+| **Total** | 200 panels + 20 arc pieces | **2196 g** | **2525 g** | **6** |
 
-Six colors, one 1 kg spool each — **~2.5 kg with margin**. The black is the lightest lift: the 10 arcs need
+Six colors, one 1 kg spool each — **~2.5 kg with margin**. The black is the lightest lift: the 20 arc pieces need
 only ~215 g, so a single spool covers them several times over (and black is the cheapest, most available
 stock). To collapse back to **five** spools instead, share the arcs onto **Dark Gray** with the T5 panels
 (Dark Gray → ~442 g, still one spool).
@@ -354,7 +354,7 @@ plates for printer efficiency, and assemble faces continuously from bins.
 
 **Flow:**
 
-1. **Base first.** Print the 10 Black arcs (~5 h) and assemble the mitred base ring — the foundation faces dock onto.
+1. **Base first.** Print the 20 Black arc pieces (~5 h) and assemble the mitred base ring — the foundation faces dock onto.
 2. **Silver is the pacing color** — 6 of every 16 panels, 80 total. Keep Silver printing more or less
    continuously in the background; face completion is gated by how fast Silver arrives.
 3. Print the four accent colors (White, Light Gray, Gray, Dark Gray) in **full single-color plates** around
@@ -374,7 +374,7 @@ color-interleaved phases (widest belt → equator → … → top cap), assembli
 Same final result; it just couples print order to assembly order (more, smaller color batches) in exchange
 for a taller dome after every phase.
 
-**Scale:** ~**200 panels + 10 arcs**, ~**78 h** of printing across ~**28 plates** (≈90 h with reprints),
+**Scale:** ~**200 panels + 20 arc pieces**, ~**78 h** of printing across ~**28 plates** (≈90 h with reprints),
 six PLA Basic spools (~2.5 kg). Silver and Gray are the long poles; the top third goes quickly.
 
 ---
@@ -385,7 +385,7 @@ Standard:
 
 - **Outer-face-down**, **supports OFF**, elephant's-foot compensation ~0.15 mm.
 - Do **not** auto-orient / "place on face" — parts are pre-flattened show-face-down and just Auto-arrange.
-- Full face (16 panels + 2 arcs) ≈ 3 plates.
+- Full face (16 panels + 4 arc pieces) ≈ 3 plates.
 
 For rounder holes and a crisper neck (the channels print as horizontal holes, whose tops tend to sag):
 
