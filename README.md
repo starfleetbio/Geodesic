@@ -167,7 +167,7 @@ top cut was rejected — it sliced the wall into a wedge). Chord letters are deb
 ## Magnets — 1/8 in (3.175 mm) N52 neodymium spheres
 
 - **2 per edge**, free to rotate in their sockets to self-align polarity.
-- Total ≈ **1,290 magnets** (≈1,200 in panel edges, 40 arc seats, 50 arc splices).
+- Total = **1,320 magnets** (200 panels × 6 = 1,200 in panel edges; 20 arc pieces × 6 = 120 in arcs).
 - Force is not the constraint — a single pair vastly exceeds the model's hoop tension; the sphere shape
   lets each ball find its own polarity.
 
