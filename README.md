@@ -276,7 +276,7 @@ doubles as a bench sort key.
 | **T3-L / T3-R** | mid grey `#9EA3B0` (**shared**) | **Silver** `#A6A9AA` | the connective band |
 | **T4** | dark grey `#737887` | **Gray** `#8E9089` (or Blue Grey `#5B6579`) | toward the face centers |
 | **T5** | charcoal `#474C5C` | **Dark Gray** `#545454` | face centers |
-| **Arcs (×10)** | — | **Black** `#000000` (its own "ground" tone) | base rim |
+| **Arcs (×20)** | — | **Black** `#000000` (its own "ground" tone) | base rim |
 
 Bambu-color matches are nearest-hex from their official [PLA Basic hex table](https://store.bblcdn.com/s7/default/1084369ef84345bbaa5d704a492954e0/Bambu_PLA_Basic_Hex_Code.pdf);
 T1/T2/T3/T5 are near-exact, T4 is a toss-up between **Gray** (better value separation) and **Blue Grey**
