@@ -423,6 +423,18 @@ one color at a time.
 
 ---
 
+## Repository layout
+
+Print-ready files sit at the top of the repo; test iterations and superseded parts are archived under `tests/`.
+
+- **`3mf/`** — production Bambu Studio plates, one file per color. `T1_JADE`, `T2_LT_GR`, `T3L_T3R_SILVER` (both mirror shapes on one Silver plate — they share the color), `T4_GR`, `T5_DK_GR`, `arc_BLK`.
+- **`stl/`** — bare geometry, one file per shape. `T1`–`T5` (T3L / T3R split) plus `arc_T2` / `arc_T3L` / `arc_T3R` / `arc_T5`.
+- **`tests/dev/`** — chronological test-print folders (`facekit_labeled_Test_1..2`, `Arcs_Test_3..4`, `rims_Test_5`, `Test_6_arcs_and_panels`, `Test_7_T1_1x`).
+- **`tests/singles/`** and **`tests/templates/`** — earlier per-shape STLs and 3MFs kept for reference; superseded by `stl/` and `3mf/`.
+- **`images/`** — the figures used above.
+
+---
+
 ## First-print revisions (what the test plate taught us)
 
 The first full-face print worked, and revealed four things — all now fixed in the files:
@@ -454,6 +466,7 @@ The first full-face print worked, and revealed four things — all now fixed in 
    against the existing T2/T5/T3-L/T3-R panels to confirm seating, arc-to-arc seams, retention, and height.*
 
 ### Open items
+
 - **Throat for retention:** tightening from Ø3.2 to **Ø3.0–3.1** (Ø3.2 relied on print shrink and let go in
   the arcs); confirm on the arc test print, then lock one throat across panels **and** arcs.
 - **Arc-to-panel top seam:** the arc top now abuts the panel with zero interpenetration and exact magnets; a
