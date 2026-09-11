@@ -1,7 +1,7 @@
 # Magnetic Geodesic Dome — Scale Model
 
 A 3D-printed, magnet-assembled scale model of a geodesic dome (Montreal Biosphère–inspired),
-built as a proof-of-concept for an eventual full-size welded structure. The rest of this page is the
+built as a proof-of-concept for an eventual larger structure. The rest of this page is the
 build spec; first, the short version of how it comes together.
 
 ## From a sphere to a dome you can hold
@@ -40,7 +40,7 @@ A full sphere isn't a dome, though — you cut it. Different fractions give diff
 </p>
 
 This model takes the **5/8** cut — everything above a plane just below the equator. That leaves **200
-panels**: the actual dome, unfolded and colored by shape:
+panels**: the actual dome, unfolded (inside view) and colored by shape:
 
 <p align="center">
   <img src="images/7%29%20net58_labeled.png" width="100%" alt="5/8-truncation flat net — 200 panels">
@@ -59,7 +59,7 @@ own structure, floating on a black base ring:
   <img src="images/9%29%20shade_rim.png" width="100%" alt="Dome rendered in the production color ramp">
 </p>
 
-That base is **20 pieces in 4 shapes** (BL, BR, C, F) that mitre together into the rim — read them as several arcs or as one continuous ring, depending on how you group them:
+That base is **20 pieces in 4 shapes** T3R(B), T5(F), T3L(B), T2(C) that mitre together into the rim — read them as several arcs or as one continuous ring:
 
 <p align="center">
   <img src="images/10%29%20arcs_review.png" width="85%" alt="The four rim arc shapes in black">
