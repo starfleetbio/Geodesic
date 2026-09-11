@@ -1,7 +1,9 @@
 import numpy as np, trimesh, importlib
+from pathlib import Path
 import geolib; importlib.reload(geolib)
 from geolib import P, classify, build_panel, letter_of, revolve_channel
 from labels import text_prism, frame_to_world
+STL_DIR = Path(__file__).resolve().parent.parent / 'stl'
 R=305.0; Vf=4
 t_web=P['t_web']; t_rim=P['t_rim']; rim_w=P['rim_w']
 socket_r=P['socket_d']/2; win_r=P['window_d']/2; barrel_r=P['barrel_d']/2; slide_r=P['slide_d']/2
@@ -82,5 +84,5 @@ for nm in ['T1','T2','T3L','T3R','T4','T5']:
     bodies=len(lp.split(only_watertight=False))
     # perforation check: any deboss vertex within 0.5mm of show face? show face at z~0; label lives high (web up)
     perf = (lp.vertices[:,2].min() < -0.01)   # nothing below plate
-    lp.export(f'FINAL_{nm}.stl')
+    lp.export(str(STL_DIR / f'{nm}.stl'))
     print(f"{nm:5s} {str(lp.is_watertight):3s} {bodies:6d} {span:7.4f} {tch:6.0f}% {lp.bounds[1,2]:6.2f} {str(aps):22s} {'BAD' if perf else 'ok':5s}")

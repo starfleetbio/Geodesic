@@ -1,9 +1,11 @@
 import numpy as np, trimesh, importlib
+from pathlib import Path
 import geolib, hoop5; importlib.reload(geolib); importlib.reload(hoop5)
 from geolib import P, KEY, letter_of, revolve_channel
 from hoop5 import ring, N, R, owner
 from labels import text_prism, frame_to_world
 from shapely.geometry import Polygon, LineString
+STL_DIR = Path(__file__).resolve().parent.parent / 'stl'
 ring=np.array(ring); up=np.array([0,0,1.]); t_rim=P['t_rim']; rim_w=P['rim_w']; t_web=P['t_web']; r_ball=P['d_ball']/2
 socket_r=P['socket_d']/2; win_r=P['window_d']/2; slide_r=P['slide_d']/2; barrel_r=P['barrel_d']/2
 slide_past=P['slide_past']; WD=np.sqrt(socket_r**2-win_r**2); FLOOR2=-105.0
@@ -96,7 +98,7 @@ def build(i,label,top_thr=3.0,seam_thr=3.1):
 lab={0:'T3L',1:'T5',2:'T3R',3:'T2'}; pieces={}   # arcs named by the TRIANGLE they meet (BL→T3L, F→T5, BR→T3R, C→T2)
 for i in (0,1,2,3):
     p,span,tch=build(i,lab[i]); pieces[i]=p
-    p.export(f'arc_run_{lab[i]}.stl')
+    p.export(str(STL_DIR / f'arc_{lab[i]}.stl'))
     print(f"{lab[i]:2s} (e{i}): wt={p.is_watertight} vol={p.volume/1000:.2f}cm3 ext={np.round(p.extents,1)} span={span:.4f} touch={tch:.0f}%")
 # plate 2x2 to fit P1S
 def fx(m): m=m.copy(); m.apply_translation([-m.bounds[0,0],-m.bounds[0,1],-m.bounds[0,2]]); return m
