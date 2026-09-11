@@ -1,0 +1,22 @@
+# Locked to the Claude Desktop sandbox environment that generated the
+# STLs in stl/ on 2025-09-01. Same-platform re-runs are byte-identical;
+# cross-platform (macOS arm64 vs Linux x86_64) the shape reproduces but a
+# few float bits shift because manifold3d is compiled per-platform.
+#
+# Python 3.11.15 (a 3.11.x patch is fine; the STL bytes don't depend on it).
+#
+#   python3.11 -m venv .venv && . .venv/bin/activate
+#   pip install -r scripts/requirements.txt
+#
+# Then, from anywhere:
+#   python scripts/build_final_panels.py   # writes stl/T{1..5}.stl (+ T3L/T3R)
+#   python scripts/build_arc_run.py        # writes stl/arc_{T2,T3L,T3R,T5}.stl
+#                                          # + arc_run_plate.stl in CWD
+
+numpy==2.4.4
+scipy==1.17.1
+shapely==2.1.2
+manifold3d==3.5.2
+matplotlib==3.10.9
+trimesh==5.0.0
+networkx
