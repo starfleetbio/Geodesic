@@ -429,9 +429,25 @@ Print-ready files sit at the top of the repo; test iterations and superseded par
 
 - **`3mf/`** — production Bambu Studio plates, one file per color. `T1_JADE`, `T2_LT_GR`, `T3L_T3R_SILVER` (both mirror shapes on one Silver plate — they share the color), `T4_GR`, `T5_DK_GR`, `Arc_BLK`. A trailing `_NX` on a filename is a reminder of how many plates to print (`_1X` = one plate, `_2X+` = two-or-more). `3mf/maybe/` holds alternate plate layouts of the same STLs pending review.
 - **`stl/`** — bare geometry, one file per shape. `T1`–`T5` (T3L / T3R split) plus `arc_T2` / `arc_T3L` / `arc_T3R` / `arc_T5`.
-- **`tests/dev/`** — chronological test-print folders (`facekit_labeled_Test_1..2`, `Arcs_Test_3..4`, `rims_Test_5`, `Test_6_arcs_and_panels`, `Test_7_T1_1x`).
+- **`scripts/`** — generators for `stl/` and the net image, plus `requirements.txt` pinning the exact Python library set they were built against. See **Reproducing the STLs** below.
+- **`Dockerfile`** + **`scripts/docker-entrypoint.sh`** — reproducible build image so anyone can verify the checked-in `stl/` came from the scripts, or regenerate them into their own tree.
+- **`tests/dev/`** — chronological test-print folders (`Test_1_Panels` through `Test_7_Panels`).
 - **`tests/stl/`** and **`tests/3mf/`** — earlier per-shape STLs and 3MFs kept for reference; superseded by `stl/` and `3mf/`. The `tests/stl/{outdated, less outdated}/` piles are the pre-final STLs from while the magnet throat was being dialed in on coupons.
 - **`images/`** — the figures used above.
+
+### Reproducing the STLs
+
+The `stl/` files are exactly what was printed and tested. To confirm they come from the scripts in `scripts/`, run the reproducible build image:
+
+```sh
+docker build -t geodesic-build .
+docker run --rm geodesic-build            # verify: prints a per-file OK/FAIL table
+docker run --rm -v "$PWD":/repo geodesic-build build   # regenerate stl/ into the host repo
+```
+
+`verify` checks *shape* equivalence, not byte identity: it rebuilds every part inside the container and confirms each is within **100 µm on bounding box** and **1 % on volume** of what's on disk — tolerances well below any FDM printer's resolution. Bit-identity across environments is not a meaningful guarantee (glibc, GCC, and pip-wheel differences shift trailing float bits even at the same package versions), so it's reported as a diagnostic rather than a pass/fail.
+
+The image pins Python 3.11 and the exact library versions from `scripts/requirements.txt`. It defaults to `linux/amd64` (matches the sandbox that originally generated `stl/`); on Apple Silicon it runs under Rosetta emulation.
 
 ---
 

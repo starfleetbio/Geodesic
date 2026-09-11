@@ -1,11 +1,11 @@
-import numpy as np, trimesh, importlib
+import os, numpy as np, trimesh, importlib
 from pathlib import Path
 import geolib, hoop5; importlib.reload(geolib); importlib.reload(hoop5)
 from geolib import P, KEY, letter_of, revolve_channel
 from hoop5 import ring, N, R, owner
 from labels import text_prism, frame_to_world
 from shapely.geometry import Polygon, LineString
-STL_DIR = Path(__file__).resolve().parent.parent / 'stl'
+STL_DIR = Path(os.environ.get('STL_DIR') or Path(__file__).resolve().parent.parent / 'stl')
 ring=np.array(ring); up=np.array([0,0,1.]); t_rim=P['t_rim']; rim_w=P['rim_w']; t_web=P['t_web']; r_ball=P['d_ball']/2
 socket_r=P['socket_d']/2; win_r=P['window_d']/2; slide_r=P['slide_d']/2; barrel_r=P['barrel_d']/2
 slide_past=P['slide_past']; WD=np.sqrt(socket_r**2-win_r**2); FLOOR2=-105.0

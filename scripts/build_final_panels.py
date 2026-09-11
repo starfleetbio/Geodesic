@@ -1,9 +1,9 @@
-import numpy as np, trimesh, importlib
+import os, numpy as np, trimesh, importlib
 from pathlib import Path
 import geolib; importlib.reload(geolib)
 from geolib import P, classify, build_panel, letter_of, revolve_channel
 from labels import text_prism, frame_to_world
-STL_DIR = Path(__file__).resolve().parent.parent / 'stl'
+STL_DIR = Path(os.environ.get('STL_DIR') or Path(__file__).resolve().parent.parent / 'stl')
 R=305.0; Vf=4
 t_web=P['t_web']; t_rim=P['t_rim']; rim_w=P['rim_w']
 socket_r=P['socket_d']/2; win_r=P['window_d']/2; barrel_r=P['barrel_d']/2; slide_r=P['slide_d']/2

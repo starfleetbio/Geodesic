@@ -1,0 +1,8 @@
+.git
+.DS_Store
+Claude outputs/
+__pycache__/
+tests/
+images/
+README.md
+arc_run_plate.stl
