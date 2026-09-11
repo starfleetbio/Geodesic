@@ -427,7 +427,7 @@ one color at a time.
 
 Print-ready files sit at the top of the repo; test iterations and superseded parts are archived under `tests/`.
 
-- **`3mf/`** — production Bambu Studio plates, one file per color. `T1_JADE`, `T2_LT_GR`, `T3L_T3R_SILVER` (both mirror shapes on one Silver plate — they share the color), `T4_GR`, `T5_DK_GR`, `arc_BLK`.
+- **`3mf/`** — production Bambu Studio plates, one file per color. `T1_JADE`, `T2_LT_GR`, `T3L_T3R_SILVER` (both mirror shapes on one Silver plate — they share the color), `T4_GR`, `T5_DK_GR`, `Arc_BLK`. A trailing `_NX` on a filename is a reminder of how many plates to print (`_1X` = one plate, `_2X+` = two-or-more). `3mf/maybe/` holds alternate plate layouts of the same STLs pending review.
 - **`stl/`** — bare geometry, one file per shape. `T1`–`T5` (T3L / T3R split) plus `arc_T2` / `arc_T3L` / `arc_T3R` / `arc_T5`.
 - **`tests/dev/`** — chronological test-print folders (`facekit_labeled_Test_1..2`, `Arcs_Test_3..4`, `rims_Test_5`, `Test_6_arcs_and_panels`, `Test_7_T1_1x`).
 - **`tests/singles/`** and **`tests/templates/`** — earlier per-shape STLs and 3MFs kept for reference; superseded by `stl/` and `3mf/`.
