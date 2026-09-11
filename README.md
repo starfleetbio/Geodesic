@@ -447,6 +447,26 @@ docker run --rm -v "$PWD":/repo geodesic-build build   # regenerate stl/ into th
 
 `verify` checks *shape* equivalence, not byte identity: it rebuilds every part inside the container and confirms each is within **100 µm on bounding box** and **1 % on volume** of what's on disk — tolerances well below any FDM printer's resolution. Bit-identity across environments is not a meaningful guarantee (glibc, GCC, and pip-wheel differences shift trailing float bits even at the same package versions), so it's reported as a diagnostic rather than a pass/fail.
 
+Passing run against the current `stl/`:
+
+```text
+file           bytes      Δbbox       Δvol result
+T1.stl         ≠        0.00 µm   0.000 mm³ OK
+T2.stl         ≠        0.00 µm   0.000 mm³ OK
+T3L.stl        ≠        0.00 µm   0.000 mm³ OK
+T3R.stl        ≠        0.00 µm   0.000 mm³ OK
+T4.stl         ≠        0.00 µm   0.000 mm³ OK
+T5.stl         ≠        0.00 µm   0.000 mm³ OK
+arc_T2.stl     ≠        0.00 µm   0.000 mm³ OK
+arc_T3L.stl    ≠        0.00 µm   0.000 mm³ OK
+arc_T3R.stl    ≠        0.00 µm   0.000 mm³ OK
+arc_T5.stl     ≠        0.00 µm   0.000 mm³ OK
+
+0/10 bit-identical, 10/10 shape-equivalent (Δbbox ≤ 100 µm, Δvol ≤ 1.0%)
+```
+
+(The `≠` in the bytes column is expected — my Apple Silicon host runs the amd64 image under Rosetta, whose manifold3d binary orders CSG floats slightly differently than Claude Desktop's native-Linux sandbox. Every mesh is nonetheless geometrically identical to sub-µm precision.)
+
 The image pins Python 3.11 and the exact library versions from `scripts/requirements.txt`. It defaults to `linux/amd64` (matches the sandbox that originally generated `stl/`); on Apple Silicon it runs under Rosetta emulation.
 
 ---
