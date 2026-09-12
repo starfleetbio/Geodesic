@@ -98,6 +98,7 @@ def build(i,label,top_thr=3.0,seam_thr=3.1):
 lab={0:'T3L',1:'T5',2:'T3R',3:'T2'}; pieces={}   # arcs named by the TRIANGLE they meet (BL→T3L, F→T5, BR→T3R, C→T2)
 for i in (0,1,2,3):
     p,span,tch=build(i,lab[i]); pieces[i]=p
+    p.merge_vertices(); p.update_faces(p.nondegenerate_faces()); p.update_faces(p.unique_faces())
     p.export(str(STL_DIR / f'arc_{lab[i]}.stl'))
     print(f"{lab[i]:2s} (e{i}): wt={p.is_watertight} vol={p.volume/1000:.2f}cm3 ext={np.round(p.extents,1)} span={span:.4f} touch={tch:.0f}%")
 # plate 2x2 to fit P1S

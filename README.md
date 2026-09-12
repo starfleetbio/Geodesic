@@ -331,6 +331,28 @@ only ~215 g, so a single spool covers them several times over (and black is the 
 stock). To collapse back to **five** spools instead, share the arcs onto **Dark Gray** with the T5 panels
 (Dark Gray → ~442 g, still one spool).
 
+### Plates to print (full dome, from scratch)
+
+Per-plate capacities are measured from the production 3MF plates. Rounding each shape up to whole plates
+gives the plate count for building the entire dome from nothing:
+
+| Type | Color | Need | Per plate | Plates | Yields | Spare |
+|---|---|---|---|---|---|---|
+| **T1** | Jade White | 30 | 14 | 3 | 42 | 12 |
+| **T2** | Light Gray | 35 | 12 | 3 | 36 | 1 |
+| **T3-L** | Silver | 40 | 12 | 4 | 48 | 8 |
+| **T3-R** | Silver | 40 | 12 | 4 | 48 | 8 |
+| **T4** | Gray | 40 | 10 | 4 | 40 | 0 |
+| **T5** | Dark Gray | 15 | 9 | 2 | 18 | 3 |
+| **Arcs** | Black | 20 | 20 | 1 | 20 | 0 |
+| **Total** | | **220** | | **21** | **252** | **32** |
+
+**21 plates** total — 20 panel plates plus the single 20-up arc plate — yielding 252 pieces for the 220
+needed, leaving 32 spares. At ~6 h per plate that is **~126 h** of print time, roughly 5–6 days
+near-continuous. **Silver is the long pole at 8 plates** (4 T3-L + 4 T3-R). Two plates are **zero-margin**:
+**T4** (4 plates = exactly 40) and the **arc plate** (exactly 20), so a single failure in either forces a
+partial reprint — add a 5th T4 plate if you want a safety margin there.
+
 ---
 
 ## Production sequence (print & build)
@@ -374,8 +396,9 @@ color-interleaved phases (widest belt → equator → … → top cap), assembli
 Same final result; it just couples print order to assembly order (more, smaller color batches) in exchange
 for a taller dome after every phase.
 
-**Scale:** ~**200 panels + 20 arc pieces**, ~**78 h** of printing across ~**28 plates** (≈90 h with reprints),
-six PLA Basic spools (~2.5 kg). Silver and Gray are the long poles; the top third goes quickly.
+**Scale:** ~**200 panels + 20 arc pieces** across **21 plates** (20 panel + 1 arc) at measured per-plate
+capacities — see **Plates to print** above. At ~6 h per plate that is ~**126 h** of printing (more with
+reprints), six PLA Basic spools (~2.5 kg). Silver is the long pole at 8 plates; the top third goes quickly.
 
 ---
 

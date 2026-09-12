@@ -84,5 +84,6 @@ for nm in ['T1','T2','T3L','T3R','T4','T5']:
     bodies=len(lp.split(only_watertight=False))
     # perforation check: any deboss vertex within 0.5mm of show face? show face at z~0; label lives high (web up)
     perf = (lp.vertices[:,2].min() < -0.01)   # nothing below plate
+    lp.merge_vertices(); lp.update_faces(lp.nondegenerate_faces()); lp.update_faces(lp.unique_faces())
     lp.export(str(STL_DIR / f'{nm}.stl'))
     print(f"{nm:5s} {str(lp.is_watertight):3s} {bodies:6d} {span:7.4f} {tch:6.0f}% {lp.bounds[1,2]:6.2f} {str(aps):22s} {'BAD' if perf else 'ok':5s}")
