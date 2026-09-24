@@ -4,6 +4,11 @@ A 3D-printed, magnet-assembled scale model of a geodesic dome (Montreal Biosphè
 built as a proof-of-concept for an eventual larger structure. The rest of this page is the
 build spec; first, the short version of how it comes together.
 
+<p align="center">
+  <img src="images/14%29%20build.JPG" width="72%" alt="The finished dome — 200 panels on a black arc rim, grey ramp from light vertices to dark face centers">
+  <br><em>The built dome — 200 panels seated on the 20-piece black arc rim, greys running light at the vertices to dark at the face centers.</em>
+</p>
+
 ## From a sphere to a dome you can hold
 
 Geodesic domes turn a sphere into a lattice of triangles — the geometry behind landmarks like Montreal's
@@ -109,7 +114,7 @@ The base chord cycle repeats **C · B · F · B** (panels **T2 · T3 · T5 · T3
 |---|---|---|---|
 | **T1** | A·A·C | 77.2 · 77.2 · 90.0 | 30 |
 | **T2** | B·B·C | 89.8 · 89.8 · 90.0 | 35 |
-| **T3-L** | B·D·E | 89.8 · 91.1 · 95.4 | 40 |
+| **T3-L** | D·B·E | 91.1 · 89.8 · 95.4 | 40 |
 | **T3-R** | B·D·E | 89.8 · 91.1 · 95.4 | 40 |
 | **T4** | E·E·F | 95.4 · 95.4 · 99.1 | 40 |
 | **T5** | F·F·F | 99.1 · 99.1 · 99.1 | 15 |
@@ -174,7 +179,7 @@ top cut was rejected — it sliced the wall into a wedge). Chord letters are deb
 ### The one channel (identical for every magnet)
 
 ```
-Ø1.4 window ← shallow spherical lead → OPEN barrel Ø3.6 → short chamfered throat Ø3.2 → slide Ø3.60 (to perimeter + 3.6 mm)
+Ø1.4 window ← shallow spherical lead → OPEN barrel Ø3.6 → short chamfered throat Ø3.0 → slide Ø3.60 (to perimeter + 3.6 mm)
 ```
 
 The channel axis is straight (one revolve, so no boolean-junction faces). One axis works because the kiss
@@ -198,9 +203,10 @@ a full Ø3.45 spherical cup that seated the ball beautifully but gripped it so h
 - **Throat = the retention knob (barrel/seat = A; throat is separate).** Coupon-2's letters A–F only varied
   barrel/seat at a *fixed* Ø3.2 throat, so "A" means **barrel Ø3.6 + shallow seat** and says nothing about the
   throat. Ø3.2 is only 0.025 mm under the 3.175 ball, so it captures **only** via the printer's ~0.1 mm shrink —
-  which held on panels but **let the ball fall out of the arcs**. So the throat is being **tightened to
-  Ø3.0–3.1** (nominally under the ball → captures by geometry, not luck) and confirmed on the arc test print;
-  barrel/seat stay at A. Throat affects rotation not at all — purely capture.
+  which held on panels but **let the ball fall out of the arcs**. **Now locked** at **Ø3.0 on panels and arc
+  top chords, Ø3.1 on arc-to-arc seams** (nominally under the ball → captures by geometry, not luck); this is
+  what the shipped STLs use (`scripts/build_final_panels.py`, `scripts/build_arc_run.py`). Barrel/seat stay
+  at A. Throat affects rotation not at all — purely capture.
 - **Slide Ø3.60** — runs from the throat to the **perimeter** then **3.6 mm into the pocket** — just enough
   to drop the ball in and start a tamper rod straight.
 
@@ -245,8 +251,9 @@ printed show-face-down like a real panel.
   — it rotates, has the best retention margin, and the thickest wall over the magnet. (Ø3.8 cases were void:
   the wide barrel reached the rim and the label deboss cut into the bore.)
 
-**Outcome:** channel A is now the library default for every panel and arc. Nothing further to dial in unless a
-future spool/nozzle prints retention marginal, in which case tighten the throat toward Ø3.1.
+**Outcome:** channel A is now the library default for every panel and arc, and the throat is locked at
+**Ø3.0 (panels + arc top chords) / Ø3.1 (arc seams)** — see the *Throat = the retention knob* bullet above.
+Nothing further to dial in.
 
 Shortcut if you don't want a separate coupon: **print your face test plate at neck 3.10 and use it as both
 the coupon and your first real face.** If 3.10 is too tight or too loose once magnets arrive, it's a
@@ -376,6 +383,11 @@ plates for printer efficiency, and assemble faces continuously from bins.
 
 **Flow:**
 
+<p align="center">
+  <img src="images/13%29%20partial_build.JPG" width="72%" alt="The build in progress — black arc ring closed, dome partially assembled on it, remaining face modules laid out beside">
+  <br><em>The flow in progress: black rim closed first, a band of the dome seated on it, remaining face modules pre-assembled off to the side and waiting to dock.</em>
+</p>
+
 1. **Base first.** Print the 20 Black arc pieces (~5 h) and assemble the mitred base ring — the foundation faces dock onto.
 2. **Silver is the pacing color** — 6 of every 16 panels, 80 total. Keep Silver printing more or less
    continuously in the background; face completion is gated by how fast Silver arrives.
@@ -450,7 +462,7 @@ one color at a time.
 
 Print-ready files sit at the top of the repo; test iterations and superseded parts are archived under `tests/`.
 
-- **`3mf/`** — production Bambu Studio plates, one file per color. `T1_JADE`, `T2_LT_GR`, `T3L_T3R_SILVER` (both mirror shapes on one Silver plate — they share the color), `T4_GR`, `T5_DK_GR`, `Arc_BLK`. A trailing `_NX` on a filename is a reminder of how many plates to print (`_1X` = one plate, `_2X+` = two-or-more). `3mf/maybe/` holds alternate plate layouts of the same STLs pending review.
+- **`3mf/`** — production Bambu Studio plates, one file per color. `T1_JADE`, `T2_LT_GR`, `T3L_T3R_SILVER` (both mirror shapes on one Silver plate — they share the color), `T4_GR`, `T5_DK_GR`, `Arc_BLK`. A trailing `_NX` on a filename is a reminder of how many plates to print (`_1X` = one plate, `_2X+` = two-or-more). A local `3mf/maybe/` (gitignored) may hold alternate plate layouts of the same STLs pending review — not part of the checked-in kit.
 - **`stl/`** — bare geometry, one file per shape. `T1`–`T5` (T3L / T3R split) plus `arc_T2` / `arc_T3L` / `arc_T3R` / `arc_T5`.
 - **`scripts/`** — generators for `stl/` and the net image, plus `requirements.txt` pinning the exact Python library set they were built against. See **Reproducing the STLs** below.
 - **`Dockerfile`** + **`scripts/docker-entrypoint.sh`** — reproducible build image so anyone can verify the checked-in `stl/` came from the scripts, or regenerate them into their own tree.
@@ -512,23 +524,46 @@ The first full-face print worked, and revealed four things — all now fixed in 
 
 5. **Magnets seated but wouldn't rotate** (found with real magnets, coupon 2). The full Ø3.45 spherical cup
    cradled the ball's whole front hemisphere — great seating, but too much conforming contact to let it spin
-   and self-align polarity. → **Channel A**: shallow spherical lead + **open barrel Ø3.6** + throat Ø3.2
-   (see *The one channel* and *The coupons* above). Balls now rotate freely and still retain; kiss point
-   unchanged, so it mates with every part already printed.
+   and self-align polarity. → **Channel A**: shallow spherical lead + **open barrel Ø3.6** + throat locked
+   at **Ø3.0 (panels + arc tops) / Ø3.1 (arc seams)** (see *The one channel* and *The coupons* above). Balls
+   rotate freely and retain; kiss point unchanged, so it mates with every part already printed.
 
-6. **Arcs were wrong in every way and got rebuilt as panels** (the big work since the last commit). The old
-   arcs printed standing up; magnets would not insert, edges weren't beveled, and the channels didn't retain.
+6. **Arcs were wrong in every way and got rebuilt as panels.** The old arcs printed standing up; magnets
+   would not insert, edges weren't beveled, and the channels didn't retain.
    → The rim is now **20 flat panel-family arcs in 4 shapes (C, F, BL, BR)** built from the same radial-frustum
    helper as the panels — beveled edges for free, channel A loaded from the inner face, wall = panel t_rim
    (5.2 mm), floor dropped to −105 for two magnets on the short seams. See **Rim** above. Interfaces to the
-   existing panels and to neighbor arcs verified exact (0.000 mm). *Test print in progress: one BL/F/BR/C set
-   against the existing T2/T5/T3-L/T3-R panels to confirm seating, arc-to-arc seams, retention, and height.*
+   existing panels and to neighbor arcs verified exact (0.000 mm). Confirmed on the arc test print and then
+   on the full build: rim closes as a self-supporting ring, arc-to-arc seams key correctly, arc-to-panel
+   seats seat clean, and the base carries the assembled dome without splay.
 
-### Open items
+### Build outcome
 
-- **Throat for retention:** tightening from Ø3.2 to **Ø3.0–3.1** (Ø3.2 relied on print shrink and let go in
-  the arcs); confirm on the arc test print, then lock one throat across panels **and** arcs.
-- **Arc-to-panel top seam:** the arc top now abuts the panel with zero interpenetration and exact magnets; a
-  small top-edge chamfer to close the shallow V-gap at that seam is optional and still to add.
-- After the arc test passes: regenerate the full production kit (200 panels + 20 arcs) with the locked
-  throat, and update the magnet count (the 20-arc rim changes the old 40-seat / 50-splice tally).
+The full **5/8 dome — 200 panels on the 20-piece black rim — is built** (photo at the top of this README).
+The spec above is what actually printed and assembled; the two build shots show the face-module flow in
+progress and the finished object.
+
+### Resolved (post-build)
+
+- **Throat for retention** — locked. Panels and arc top chords: **Ø3.0**; arc-to-arc seams: **Ø3.1**. Baked
+  into the shipped STLs by `scripts/build_final_panels.py` (`throat_d = 3.0`) and `scripts/build_arc_run.py`
+  (`top_thr = 3.0`, `seam_thr = 3.1`).
+- **Arc-to-panel top seam** — the panel-family dihedral bevel on the arc top edge (`build_arc_run.py`) closes
+  the seam by construction; no extra top-edge chamfer needed, and none added.
+
+### Observations from the built dome (worth improving on the next kit)
+
+- **Retention failures roughly 1 in 8 panels, concentrated on T3-L / T3-R (Silver).** About one panel in
+  eight had at least one channel that would not hold its magnet. The failure rate was heavily weighted toward
+  the Silver panels (T3-L / T3-R), which suggests **the specific Silver filament used here didn't hold channel
+  geometry as well as the other Bambu greys** — likely a softer/more slumpy PLA that let the horizontal
+  channel walls (and probably the throat) print a hair oversized. Next kit: **try a different silver** (e.g. a
+  different brand's silver PLA, or drop back onto a more consistent Bambu grey and re-shade the ramp) before
+  changing the geometry. If the same brand is reused, a modest per-color flow calibration for that spool would
+  be the first thing to try.
+- **T5 panels left a small removable piece of plastic in the channel.** Each T5 needed a small stray piece
+  popped out during finishing — most likely an unfused island the slicer left inside the tapered channel on
+  T5's specific geometry. Not a functional problem but a real assembly nuisance. Next revision: check the T5
+  channel/window/throat interaction (T5 is the equilateral face-center panel, so the three channels meet the
+  central web at the tightest angle) and either move the offending detail or accept that T5 wants a slightly
+  different slice profile.
